@@ -39,7 +39,7 @@ namespace UlziUI.Controls
 
 			_entry = new AppEntry
 			{
-				HorizontalOptions = LayoutOptions.Fill,
+				HorizontalOptions = LayoutOptions.FillAndExpand,
 				VerticalOptions = LayoutOptions.CenterAndExpand
 			};
 
@@ -53,17 +53,22 @@ namespace UlziUI.Controls
 			{
 				HorizontalOptions = LayoutOptions.Center,
 				VerticalOptions = LayoutOptions.Center,
+				Aspect = Aspect.Fill,
 				Source = "left_gray",
-				
+
+
 			};
 			_leftImage.SetBinding(Image.HeightRequestProperty, new Binding("ImageSize", BindingMode.OneWay, null, null, null, this));
 			_leftImage.SetBinding(Image.WidthRequestProperty, new Binding("ImageSize", BindingMode.OneWay, null, null, null, this));
+
+
+
 
 			_leftImageContent = new ContentView
 			{
 				HorizontalOptions = LayoutOptions.Start,
 				VerticalOptions = LayoutOptions.Center,
-				
+
 				Content = _leftImage
 			};
 
@@ -77,6 +82,7 @@ namespace UlziUI.Controls
 			_entry.SetBinding(AppEntry.PlaceholderColorProperty, new Binding(PlaceholderColorProperty.PropertyName, BindingMode.OneWay, null, null, null, this));
 			_entry.SetBinding(AppEntry.AppFontProperty, new Binding(AppFontProperty.PropertyName, BindingMode.OneWay, null, null, null, this));
 			_entry.SetBinding(AppEntry.FontSizeProperty, new Binding(FontSizeProperty.PropertyName, BindingMode.OneWay, null, null, null, this));
+			_entry.SetBinding(AppEntry.WidthRequestProperty, new Binding(WidthRequestProperty.PropertyName, BindingMode.OneWay, null, null, null, this));
 
 			_entry.Completed += (sender, args) => {
 				this.DoCompleted();
@@ -92,16 +98,18 @@ namespace UlziUI.Controls
 
 			var entryContent = new ContentView
 			{
-				HorizontalOptions = LayoutOptions.Fill,
+
+				HorizontalOptions = LayoutOptions.FillAndExpand,
 				VerticalOptions = LayoutOptions.Center,
-				
+				Padding = new Thickness(0, 0, 0, 5),
 				Content = _entry
 			};
 
 			var _rightImage = new Image
 			{
-				HorizontalOptions = LayoutOptions.End,
-				VerticalOptions = LayoutOptions.CenterAndExpand,
+				HorizontalOptions = LayoutOptions.EndAndExpand,
+				VerticalOptions = LayoutOptions.Center,
+				Aspect = Aspect.Fill,
 
 
 				Source = "plus_gray",
@@ -111,24 +119,24 @@ namespace UlziUI.Controls
 
 			_rightImageContent = new ContentView
 			{
-				HorizontalOptions = LayoutOptions.End,
-				VerticalOptions = LayoutOptions.CenterAndExpand,
-				Padding = new Thickness(0, 0, 0, 10),
+				HorizontalOptions = LayoutOptions.EndAndExpand,
+				VerticalOptions = LayoutOptions.Center,
+				Padding = new Thickness(0, 0, 5, 0),
 				Content = _rightImage
 			};
 			var grid = new Grid
 			{
 				HorizontalOptions = LayoutOptions.Fill,
-				VerticalOptions = LayoutOptions.Fill,
+				VerticalOptions = LayoutOptions.Center,
 				RowSpacing = 0,
 				ColumnSpacing = 0,
 				ColumnDefinitions = {
 					new ColumnDefinition { Width = new GridLength(1, GridUnitType.Auto) },
-					new ColumnDefinition { Width = new GridLength(1, GridUnitType.Star) }
+					new ColumnDefinition { Width = new GridLength(1, GridUnitType.Auto) }
 				},
 				RowDefinitions = {
-					new RowDefinition { Height = new GridLength(1, GridUnitType.Star) },
-					new RowDefinition { Height = new GridLength(1, GridUnitType.Absolute) }
+					new RowDefinition { Height = new GridLength(1, GridUnitType.Auto) },
+					new RowDefinition { Height = new GridLength(1, GridUnitType.Auto) }
 				}
 			};
 			grid.Children.Add(_leftImageContent, 0, 0);

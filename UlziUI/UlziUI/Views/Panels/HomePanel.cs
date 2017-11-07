@@ -38,7 +38,7 @@ namespace UlziUI.Views.Panels
 
 
 		StackLayout moreStarredPlacesContent;
-        AppCommand moreStarredPlacesLabel;
+		AppCommand moreStarredPlacesLabel;
 		AppImage moreStarredPlacesImage;
 
 		AppLabel currentLocationLabel;
@@ -80,36 +80,47 @@ namespace UlziUI.Views.Panels
 
 
 			var searchBarHeight = MainPage.PageHeight * 0.07;
-			var peopleListHeight = MainPage.PageHeight * 0.13;
-			var currentLocationHeight = MainPage.PageHeight * 0.07;
+			var peopleListHeight = MainPage.PageHeight * 0.15;
+			var currentLocationHeight = MainPage.PageHeight * 0.06;
 			var placesHeight = MainPage.PageHeight * 0.20;
 			var morePlacesHeight = MainPage.PageHeight * 0.34;
 
 
 
-			var searchImageSize = MainPage.PageHeight / 35.001;
+			var searchImageSize = MainPage.PageHeight / 25.001;
 			var searchContentleftOffset = MainPage.PageHeight / 68.342;
-            var searchContenttopOffset = MainPage.PageHeight / 17.855;
+			var searchContenttopOffset = MainPage.PageHeight / 17.855;
 
-            var addPeopleLabelFontSize = MainPage.PageHeight / 60.6364;
-            var addPeopleImageWidthHeight = MainPage.PageHeight / 27.3368;
-            var addPeopleConytentWidth = MainPage.PageHeight / 6.8342;
-           // var peopleListHeight = 130;
+			var addPeopleLabelFontSize = MainPage.PageHeight / 60.6364;
+			var addPeopleImageWidthHeight = MainPage.PageHeight / 18.5;
+			var addPeopleConytentWidth = MainPage.PageHeight / 6.8342;
+			// var peopleListHeight = 130;
 
-            var currentLocationImageWidthHeight = MainPage.PageHeight / 34.171;
-            var currentLocationLabelSize = MainPage.PageHeight / 62.636;
-            var currentLocationContentDetailLeftOffset = MainPage.PageHeight / 68.342;
-            var currentLocationContentLeftRightOffset = MainPage.PageHeight / 68.342;
+			var currentLocationImageWidthHeight = MainPage.PageHeight / 30.171;
+			var currentLocationLabelSize = MainPage.PageHeight / 45.636;
+			var currentLocationContentDetailLeftOffset = MainPage.PageHeight / 38.342;
+			var currentLocationContentLeftRightOffset = MainPage.PageHeight / 68.342;
 
-            var placesLabelFontSize = MainPage.PageHeight / 62.636;
-            var placesImageWidth = MainPage.PageHeight / 34.171;
-            var placesImageHeight = MainPage.PageHeight / 34.171;
-            var placesOffset = MainPage.PageHeight / 68.342;
+			var placesLabelFontSize = MainPage.PageHeight / 45.636;
+			var placesImageWidth = MainPage.PageHeight / 30.171;
+			var placesImageHeight = MainPage.PageHeight / 30.171;
+			var placesOffset = MainPage.PageHeight / 38.342;
+
+			var placesContentOffset = MainPage.PageHeight / 68.342;
+
+			var searchImageWidth = MainPage.PageHeight / 30.171;
+			var searchImageHeight = MainPage.PageHeight / 30.171;
+			var searchOffset = MainPage.PageHeight / 68.342;
+
+			var morePlacesSearchOffset = MainPage.PageHeight / 32.345;
 
 
-            var searchImageWidth = MainPage.PageHeight / 34.171;
-            var searchImageHeight = MainPage.PageHeight / 34.171;
-            var searchOffset = MainPage.PageHeight / 68.342;
+			#region Page Background
+			this.BackgroundColor = Color.LightGray;
+			this.Opacity = 1.0;
+
+
+			#endregion
 
 
 			#region Сontent
@@ -117,22 +128,19 @@ namespace UlziUI.Views.Panels
 			#region SearchBar
 
 			var searchEntry = new AppSearchEntryEditor
-            {
-                ImageSize = searchImageSize,
+			{
+				ImageSize = searchImageSize,
 				HorizontalOptions = LayoutOptions.FillAndExpand,
 				Placeholder = "Search People and Places",
-				WidthRequest = MainPage.PageWidth,
+				WidthRequest = 280,
 				VerticalOptions = LayoutOptions.CenterAndExpand,
-
-
-
 
 			};
 
 
 			searchPeopleContent = new StackLayout
 			{
-                Margin = new Thickness(searchContentleftOffset, searchContenttopOffset, 10, 0),
+				Margin = new Thickness(searchContentleftOffset, searchContenttopOffset, 10, 0),
 				BackgroundColor = Color.White,
 				HeightRequest = searchBarHeight,
 				Children ={
@@ -150,44 +158,40 @@ namespace UlziUI.Views.Panels
 			#region People List
 			var addPeopleLabel = new AppLabel
 			{
-                FontSize = addPeopleLabelFontSize,
+				FontSize = addPeopleLabelFontSize,
 				Text = "Add People",
 				HorizontalTextAlignment = TextAlignment.Center,
+				VerticalTextAlignment = TextAlignment.End,
 
 			};
 
 			var addPeopleImage = new AppImage
 			{
 				Source = "plus_gray",
-                WidthRequest = addPeopleImageWidthHeight,
-                HeightRequest = addPeopleImageWidthHeight,
+				WidthRequest = addPeopleImageWidthHeight,
+				HeightRequest = addPeopleImageWidthHeight,
 
 			};
 
-			var addPeopleImageContent = new ContentView
-			{
 
-				Content = addPeopleImage,
-
-			};
 
 			var addPeopleContent = new StackLayout
 			{
 				HorizontalOptions = LayoutOptions.Start,
 				VerticalOptions = LayoutOptions.Center,
-                WidthRequest = addPeopleConytentWidth,
+				WidthRequest = addPeopleConytentWidth,
 				Children ={
-					addPeopleImageContent,addPeopleLabel
+					addPeopleImage,addPeopleLabel
 				}
 
 			};
 
 			var dataHScroll2 = new HScrollViewCell2Data[] {
-				new HScrollViewCell2Data { name = "jamie",  profileImage ="default_user"},
-				new HScrollViewCell2Data { name = "barde luna",  profileImage ="default_user"},
-				new HScrollViewCell2Data { name = "gerald",  profileImage ="default_user"},
-				new HScrollViewCell2Data {name = "jamie",  profileImage ="default_user"},
-				new HScrollViewCell2Data { name = "gerald",  profileImage ="default_user"},
+				new HScrollViewCell2Data { name = "jamie luna",  profileImage ="default_user", strokeColor=Color.Red},
+				new HScrollViewCell2Data { name = "barde luna",  profileImage ="default_user", strokeColor=Color.Yellow},
+				new HScrollViewCell2Data { name = "gerald luna",  profileImage ="default_user"},
+				new HScrollViewCell2Data {name = "jamie luna",  profileImage ="default_user"},
+				new HScrollViewCell2Data { name = "gerald luna",  profileImage ="default_user"},
 				new HScrollViewCell2Data { name = "barde luna",  profileImage ="default_user"},
 
 			};
@@ -219,6 +223,8 @@ namespace UlziUI.Views.Panels
 				}
 			};
 
+
+
 			#endregion
 
 
@@ -228,15 +234,15 @@ namespace UlziUI.Views.Panels
 			currentLocationImage = new AppImage
 			{
 				Source = "map_gray",
-                HeightRequest = currentLocationImageWidthHeight,
-                WidthRequest = currentLocationImageWidthHeight,
+				HeightRequest = currentLocationImageWidthHeight,
+				WidthRequest = currentLocationImageWidthHeight,
 			};
 
 			currentLocationLabel = new AppLabel
 			{
 				Text = "Current Location",
 				VerticalTextAlignment = TextAlignment.Center,
-                FontSize = currentLocationLabelSize,
+				FontSize = currentLocationLabelSize,
 			};
 
 			currentLocationContentDetails = new StackLayout
@@ -244,7 +250,7 @@ namespace UlziUI.Views.Panels
 
 				Orientation = StackOrientation.Horizontal,
 				VerticalOptions = LayoutOptions.CenterAndExpand,
-                Padding = new Thickness(currentLocationContentDetailLeftOffset, 0, 0, 0),
+				Padding = new Thickness(currentLocationContentDetailLeftOffset, 0, 0, 0),
 				Children ={
 					currentLocationImage,currentLocationLabel
 				}
@@ -254,7 +260,7 @@ namespace UlziUI.Views.Panels
 
 			currentLocationContent = new StackLayout
 			{
-                Margin = new Thickness(currentLocationContentLeftRightOffset, 0, currentLocationContentLeftRightOffset, 0),
+				Margin = new Thickness(currentLocationContentLeftRightOffset, 0, currentLocationContentLeftRightOffset, 0),
 				BackgroundColor = Color.White,
 				HeightRequest = currentLocationHeight,
 				Children ={
@@ -269,15 +275,15 @@ namespace UlziUI.Views.Panels
 			schoolImage = new AppImage
 			{
 				Source = "star_gray",
-                HeightRequest = placesImageHeight,
-                WidthRequest = placesImageHeight,
+				HeightRequest = placesImageHeight,
+				WidthRequest = placesImageHeight,
 			};
 
 			schoolLabel = new AppLabel
 			{
 				Text = "School",
 				VerticalTextAlignment = TextAlignment.Center,
-                FontSize = placesLabelFontSize,
+				FontSize = placesLabelFontSize,
 			};
 
 			schoolContent = new StackLayout
@@ -295,14 +301,14 @@ namespace UlziUI.Views.Panels
 
 				Text = "Home",
 				VerticalTextAlignment = TextAlignment.Center,
-                FontSize = placesLabelFontSize,
+				FontSize = placesLabelFontSize,
 			};
 
 			homeImage = new AppImage
 			{
 				Source = "star_gray",
-                HeightRequest = placesImageHeight,
-                WidthRequest = placesImageWidth,
+				HeightRequest = placesImageHeight,
+				WidthRequest = placesImageWidth,
 			};
 
 			homeContent = new StackLayout
@@ -319,14 +325,14 @@ namespace UlziUI.Views.Panels
 
 				Text = "Work",
 				VerticalTextAlignment = TextAlignment.Center,
-                FontSize = placesLabelFontSize,
+				FontSize = placesLabelFontSize,
 			};
 
 			workImage = new AppImage
 			{
 				Source = "star_gray",
-                HeightRequest = placesImageHeight,
-                WidthRequest = placesImageWidth,
+				HeightRequest = placesImageHeight,
+				WidthRequest = placesImageWidth,
 
 			};
 
@@ -339,25 +345,25 @@ namespace UlziUI.Views.Panels
 			};
 
 
-            moreStarredPlacesLabel = new AppCommand
-            {
+			moreStarredPlacesLabel = new AppCommand
+			{
 
 
-				
-                FontSize = placesLabelFontSize,
+
+				FontSize = placesLabelFontSize,
 			};
 
-            moreStarredPlacesLabel.SetBinding(AppCommand.TextProperty, new Binding("MoreStarredPlaces", BindingMode.OneWay, null, null, null, AppLanguages.CurrentLanguage));
+			moreStarredPlacesLabel.SetBinding(AppCommand.TextProperty, new Binding("MoreStarredPlaces", BindingMode.OneWay, null, null, null, AppLanguages.CurrentLanguage));
 
-            moreStarredPlacesLabel.SetBinding(AppCommand.CommandProperty, "MoreStarredPlacesCommand");
+			moreStarredPlacesLabel.SetBinding(AppCommand.CommandProperty, "MoreStarredPlacesCommand");
 
 
 
 			moreStarredPlacesImage = new AppImage
 			{
 				Source = "star_gray",
-                HeightRequest = placesImageHeight,
-                WidthRequest = placesImageWidth,
+				HeightRequest = placesImageHeight,
+				WidthRequest = placesImageWidth,
 			};
 
 			moreStarredPlacesContent = new StackLayout
@@ -372,7 +378,7 @@ namespace UlziUI.Views.Panels
 			placesWrapperContent = new StackLayout
 			{
 
-                Padding = new Thickness(placesOffset, placesOffset, 0, 0),
+				Padding = new Thickness(placesOffset, placesContentOffset, 0, 0),
 				Children ={
 					schoolContent,homeContent,workContent,moreStarredPlacesContent
 				}
@@ -380,7 +386,7 @@ namespace UlziUI.Views.Panels
 
 			placesContent = new StackLayout
 			{
-                Margin = new Thickness(placesOffset, 0, placesOffset, 0),
+				Margin = new Thickness(placesContentOffset, 0, placesContentOffset, 0),
 				BackgroundColor = Color.White,
 				HeightRequest = placesHeight,
 				Children ={
@@ -398,7 +404,7 @@ namespace UlziUI.Views.Panels
 
 			searchListView = new ListView
 			{
-                Margin = new Thickness(searchOffset, 0, searchOffset, 0),
+				Margin = new Thickness(searchOffset, 0, searchOffset, 0),
 				HasUnevenRows = true,
 				ItemTemplate = new DataTemplate(typeof(SearchesTemplate)),
 				ItemsSource = SearchData.GetData(),
@@ -414,8 +420,8 @@ namespace UlziUI.Views.Panels
 			morePreviousSerchesImage = new AppImage
 			{
 				Source = "clock_gray",
-                WidthRequest = searchImageWidth,
-                HeightRequest = searchImageHeight,
+				WidthRequest = searchImageWidth,
+				HeightRequest = searchImageHeight,
 			};
 
 			morePreviousSearchesLabel = new AppLabel
@@ -425,7 +431,7 @@ namespace UlziUI.Views.Panels
 
 			morePreviousSearchesContent = new StackLayout
 			{
-                Padding = new Thickness(searchOffset, 0, 0, searchOffset),
+				Padding = new Thickness(morePlacesSearchOffset, 0, 0, searchOffset),
 				Orientation = StackOrientation.Horizontal,
 				Children ={
 					morePreviousSerchesImage,morePreviousSearchesLabel
@@ -436,7 +442,7 @@ namespace UlziUI.Views.Panels
 
 			searchContent = new StackLayout
 			{
-                Margin = new Thickness(searchOffset, 0, searchOffset, 0),
+				Margin = new Thickness(searchOffset, 0, searchOffset, 0),
 				BackgroundColor = Color.White,
 				HeightRequest = morePlacesHeight,
 				Children ={
@@ -449,8 +455,8 @@ namespace UlziUI.Views.Panels
 			#endregion
 
 			finalContent = new StackLayout
-            {
-                Spacing = searchOffset,
+			{
+				Spacing = searchOffset,
 
 				Children ={
 					searchPeopleContent, peopleListContent,currentLocationContent,placesContent,searchContent
@@ -485,28 +491,28 @@ namespace UlziUI.Views.Panels
 		StackLayout searchImageContent;
 		StackLayout searchFinalContent;
 
-		
+
 
 		public SearchesTemplate()
 		{
 			var searchImageWidth = 20;
 			var searchImageHeight = 20;
 
-			var searchLabelHeadingSize = MainPage.PageHeight / 61.636;
+			var searchLabelHeadingSize = MainPage.PageHeight / 45.636;
 
-			var searchLabelDetailSize=MainPage.PageHeight / 64.636;
-            var searchOffset = 5;
+			var searchLabelDetailSize = MainPage.PageHeight / 60.636;
+			var searchOffset = 5;
 
 			searchImage = new AppImage
 			{
-                WidthRequest = searchImageWidth,
-                HeightRequest = searchImageHeight,
+				WidthRequest = searchImageWidth,
+				HeightRequest = searchImageHeight,
 				Source = "clock_gray",
 			};
 
 			searchLabelHeading = new AppLabel
 			{
-                FontSize = searchLabelHeadingSize,
+				FontSize = searchLabelHeadingSize,
 
 			};
 
@@ -514,23 +520,27 @@ namespace UlziUI.Views.Panels
 
 			searchLabelDetail = new AppLabel
 			{
-                FontSize = searchLabelDetailSize,
+				FontSize = searchLabelDetailSize,
+				Opacity = 0.5,
 			};
 
 			searchLabelDetail.SetBinding(AppLabel.TextProperty, "searchDetail");
 
 			searchDetailContent = new StackLayout
 			{
-				VerticalOptions = LayoutOptions.CenterAndExpand,
+				VerticalOptions = LayoutOptions.StartAndExpand,
 				Spacing = 0,
 				Children ={
 					searchLabelHeading,searchLabelDetail
 				}
 			};
 
+			var searchLeftOffset = MainPage.PageHeight / 67.342;
+
+
 			searchFinalContent = new StackLayout
 			{
-                Padding = new Thickness(0, searchOffset, 0, 0),
+				Padding = new Thickness(searchLeftOffset, searchOffset, 0, 0),
 				Orientation = StackOrientation.Horizontal,
 				Children ={
 					searchImage,searchDetailContent
@@ -593,6 +603,7 @@ namespace UlziUI.Views.Panels
 
 		public string name { get; set; }
 		public string profileImage { get; set; }
+		public Color strokeColor { get; set; }
 
 	}
 
@@ -601,7 +612,7 @@ namespace UlziUI.Views.Panels
 	public class HScrollViewCell2 : ContentView
 	{
 
-       
+
 
 		protected AppImage profileImage;
 
@@ -618,37 +629,43 @@ namespace UlziUI.Views.Panels
 			}
 		}
 
-        double peopleListOffset = 10;
-        double profileImageWidth = 40;
-        double profileImageHeight = 40;
-        double profileStrokeWidth = 2.0;
-        double peopleNameFontSize = MainPage.PageHeight / 60.636;
+		double peopleListOffset = 10;
+		double profileImageWidth = 40;
+		double profileImageHeight = 40;
+		double profileStrokeWidth = 3.0;
+		double peopleNameFontSize = MainPage.PageHeight / 60.636;
 
 
 		public HScrollViewCell2()
 		{
-          
+
 			this.BackgroundColor = Color.Transparent;
-            this.Padding = peopleListOffset;
+			this.Padding = peopleListOffset;
 
 
 
 
 			profileImage = new AppImage()
-            {
-                WidthRequest = profileImageWidth,
-                HeightRequest = profileImageHeight,
-                VerticalOptions = LayoutOptions.Start,
-                HorizontalOptions = LayoutOptions.Center,
-                BackgroundColor = Color.Transparent,
-                StrokeWidth = profileStrokeWidth,
+			{
+				WidthRequest = profileImageWidth,
+				HeightRequest = profileImageHeight,
+				VerticalOptions = LayoutOptions.Start,
+				HorizontalOptions = LayoutOptions.Center,
+				BackgroundColor = Color.Transparent,
+				StrokeWidth = profileStrokeWidth,
 				StrokeColor = Color.Black,
+
 
 
 			};
 
+			profileImage.SetBinding(AppImage.StrokeColorProperty, "strokeColor");
+
+
+
 			var profileImageContent = new ContentView
 			{
+
 
 				Content = profileImage,
 
@@ -659,22 +676,32 @@ namespace UlziUI.Views.Panels
 				VerticalOptions = LayoutOptions.End,
 
 				HorizontalOptions = LayoutOptions.Center,
-                FontSize = peopleNameFontSize,
+				FontSize = peopleNameFontSize,
 
 				BackgroundColor = Color.Transparent,
+
+
 
 			};
 
 			peopleName.SetBinding(AppLabel.TextProperty, "name");
 
+			var peopleNameContent = new StackLayout
+			{
 
+
+				Children ={
+					peopleName
+				}
+			};
 
 			var viewLayout = new StackLayout()
 			{
+
 				Orientation = StackOrientation.Vertical,
 				Children =
 				{
-					profileImageContent, peopleName
+					profileImageContent, peopleNameContent
 
 				},
 				BackgroundColor = Color.Transparent
@@ -693,8 +720,8 @@ namespace UlziUI.Views.Panels
 				//string imageSource = "HScrollDemo.Resources." + this.bindedData.icon;
 				string imageSource = this.bindedData.profileImage;
 				this.profileImage.Source = ImageSource.FromFile(imageSource);
-                this.profileImage.HeightRequest = profileImageWidth;
-                this.profileImage.WidthRequest = profileImageHeight;
+				this.profileImage.HeightRequest = profileImageWidth;
+				this.profileImage.WidthRequest = profileImageHeight;
 			}
 		}
 
