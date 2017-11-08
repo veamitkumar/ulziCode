@@ -49,7 +49,7 @@ namespace UlziUI.Controls
 
 		private void yourMethod(AppEntry _entry)
 		{
-			_leftImage = new Image
+			_leftImage = new AppImageCommand
 			{
 				HorizontalOptions = LayoutOptions.Center,
 				VerticalOptions = LayoutOptions.Center,
@@ -60,6 +60,7 @@ namespace UlziUI.Controls
 			};
 			_leftImage.SetBinding(Image.HeightRequestProperty, new Binding("ImageSize", BindingMode.OneWay, null, null, null, this));
 			_leftImage.SetBinding(Image.WidthRequestProperty, new Binding("ImageSize", BindingMode.OneWay, null, null, null, this));
+			_leftImage.SetBinding(AppImageCommand.CommandProperty, "LeftEntryCommand");
 
 
 
@@ -105,7 +106,7 @@ namespace UlziUI.Controls
 				Content = _entry
 			};
 
-			var _rightImage = new Image
+			var _rightImage = new AppImageCommand
 			{
 				HorizontalOptions = LayoutOptions.EndAndExpand,
 				VerticalOptions = LayoutOptions.Center,
@@ -116,6 +117,7 @@ namespace UlziUI.Controls
 			};
 			_rightImage.SetBinding(Image.HeightRequestProperty, new Binding("ImageSize", BindingMode.OneWay, null, null, null, this));
 			_rightImage.SetBinding(Image.WidthRequestProperty, new Binding("ImageSize", BindingMode.OneWay, null, null, null, this));
+			_rightImage.SetBinding(AppImageCommand.CommandProperty, "RightEntryCommand");
 
 			_rightImageContent = new ContentView
 			{

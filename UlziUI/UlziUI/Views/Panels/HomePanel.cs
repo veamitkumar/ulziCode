@@ -38,11 +38,11 @@ namespace UlziUI.Views.Panels
 
 
 		StackLayout moreStarredPlacesContent;
-		AppCommand moreStarredPlacesLabel;
+		AppTextCommand moreStarredPlacesLabel;
 		AppImage moreStarredPlacesImage;
 
 		AppLabel currentLocationLabel;
-		AppImage currentLocationImage;
+		AppImageCommand currentLocationImage;
 		StackLayout currentLocationContentDetails;
 
 		ListView searchListView;
@@ -165,13 +165,17 @@ namespace UlziUI.Views.Panels
 
 			};
 
-			var addPeopleImage = new AppImage
+
+
+			var addPeopleImage = new AppImageCommand
 			{
 				Source = "plus_gray",
 				WidthRequest = addPeopleImageWidthHeight,
 				HeightRequest = addPeopleImageWidthHeight,
 
 			};
+
+			addPeopleImage.SetBinding(AppImageCommand.CommandProperty, "AddPeopleCommand");
 
 
 
@@ -231,12 +235,14 @@ namespace UlziUI.Views.Panels
 			#region CurrentLocation
 
 
-			currentLocationImage = new AppImage
+			currentLocationImage = new AppImageCommand
 			{
 				Source = "map_gray",
 				HeightRequest = currentLocationImageWidthHeight,
 				WidthRequest = currentLocationImageWidthHeight,
 			};
+
+			currentLocationImage.SetBinding(AppImageCommand.CommandProperty, "CurrentLocationCommand");
 
 			currentLocationLabel = new AppLabel
 			{
@@ -244,6 +250,8 @@ namespace UlziUI.Views.Panels
 				VerticalTextAlignment = TextAlignment.Center,
 				FontSize = currentLocationLabelSize,
 			};
+
+
 
 			currentLocationContentDetails = new StackLayout
 			{
@@ -345,17 +353,17 @@ namespace UlziUI.Views.Panels
 			};
 
 
-			moreStarredPlacesLabel = new AppCommand
+			moreStarredPlacesLabel = new AppTextCommand
 			{
 
-
-
+				Text = "More Starred Places",
+				VerticalTextAlignment = TextAlignment.Center,
 				FontSize = placesLabelFontSize,
 			};
 
 			moreStarredPlacesLabel.SetBinding(AppCommand.TextProperty, new Binding("MoreStarredPlaces", BindingMode.OneWay, null, null, null, AppLanguages.CurrentLanguage));
 
-			moreStarredPlacesLabel.SetBinding(AppCommand.CommandProperty, "MoreStarredPlacesCommand");
+			moreStarredPlacesLabel.SetBinding(AppTextCommand.CommandProperty, "MoreStarredPlacesCommand");
 
 
 
@@ -424,10 +432,12 @@ namespace UlziUI.Views.Panels
 				HeightRequest = searchImageHeight,
 			};
 
-			morePreviousSearchesLabel = new AppLabel
+			morePreviousSearchesLabel = new AppTextCommand
 			{
 				Text = "More Previous Searches"
 			};
+
+			morePreviousSearchesLabel.SetBinding(AppTextCommand.CommandProperty, "MoreStarredPlacesCommand");
 
 			morePreviousSearchesContent = new StackLayout
 			{

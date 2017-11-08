@@ -6,112 +6,137 @@ using UlziUI.ViewModels.Panels;
 
 namespace UlziUI.ViewModels.Pages
 {
-    #region MainViewModel
-    public class MainViewModel : UlziViewModel
-    {
-        private List<int> _statesStack = new List<int>();
+	#region MainViewModel
+	public class MainViewModel : UlziViewModel
+	{
+		private List<int> _statesStack = new List<int>();
 
-        public MainViewModel() : base()
-        {
-            this.StartViewModel = new StartViewModel(this);
-            this.LoginViewModel = new LoginViewModel(this);
-        }
+		public MainViewModel() : base()
+		{
+			this.StartViewModel = new StartViewModel(this);
+			this.LoginViewModel = new LoginViewModel(this);
+			this.HomeViewModel = new HomeViewModel(this);
+			this.StarredPlacesViewModel = new StarredPlacesViewModel(this);
+		}
 
-        protected override void DoPropertyChanged(string propertyName)
-        {
-            base.DoPropertyChanged(propertyName);
-        }
+		protected override void DoPropertyChanged(string propertyName)
+		{
+			base.DoPropertyChanged(propertyName);
+		}
 
-        protected override void Localize()
-        {
-            base.Localize();
+		protected override void Localize()
+		{
+			base.Localize();
 
-            if (this.StartViewModel != null)
-            {
-                this.StartViewModel.Localize();
-                this.LoginViewModel.Localize();
-            }
-        }
+			if (this.StartViewModel != null)
+			{
+				this.StartViewModel.Localize();
+				this.LoginViewModel.Localize();
+				// this.HomeViewModel.Localize();
+			}
+		}
 
-        public override void Initialize(params object[] parameters)
-        {
-            base.Initialize(parameters);
+		public override void Initialize(params object[] parameters)
+		{
+			base.Initialize(parameters);
 
-            this.State = AppConstants.APP_PANEL_START;
-            this.InitializePanel(parameters);
-        }
+			this.State = AppConstants.APP_PANEL_START;
+			this.InitializePanel(parameters);
+		}
 
-        private void InitializePanel(params object[] parameters)
-        {
-            if (this.State == AppConstants.APP_PANEL_START)
-                this.StartViewModel.Initialize(parameters);
-            else if (this.State == AppConstants.APP_PANEL_LOGIN)
-                this.LoginViewModel.Initialize(parameters);
-        }
+		private void InitializePanel(params object[] parameters)
+		{
+			if (this.State == AppConstants.APP_PANEL_START)
+				this.StartViewModel.Initialize(parameters);
+			else if (this.State == AppConstants.APP_PANEL_LOGIN)
+				this.LoginViewModel.Initialize(parameters);
+			// else if (this.State == AppConstants.APP_PANEL_HOME)
+			// this.HomeViewModel.Initialize(parameters);
 
-        private void BackPanel()
-        {
-            if (this.State == AppConstants.APP_PANEL_START)
-                this.StartViewModel.Back();
-            else if (this.State == AppConstants.APP_PANEL_LOGIN)
-                this.LoginViewModel.Back();
-        }
+		}
 
-        public void PushPanel(int newState, params object[] parameters)
-        {
-            if (this.State != newState)
-            {
-                this.State = newState;
-                this.InitializePanel(parameters);
-            }
-        }
+		private void BackPanel()
+		{
+			if (this.State == AppConstants.APP_PANEL_START)
+				this.StartViewModel.Back();
+			else if (this.State == AppConstants.APP_PANEL_LOGIN)
+				this.LoginViewModel.Back();
+			//  else if (this.State == AppConstants.APP_PANEL_HOME)
+			// this.HomeViewModel.Back();
+		}
 
-        public void PopPanel()
-        {
-            var index = _statesStack.Count - 1;
-            if (index >= 0)
-            {
-                var state = _statesStack[index];
-                _statesStack.RemoveAt(index);
-                this.State = state;
-                this.BackPanel();
-            }
-        }
+		public void PushPanel(int newState, params object[] parameters)
+		{
+			if (this.State != newState)
+			{
+				this.State = newState;
+				this.InitializePanel(parameters);
+			}
+		}
 
-        public void PopToRootPanel()
-        {
-            if (_statesStack.Count > 0)
-            {
-                _statesStack.Clear();
-                this.State = AppConstants.APP_PANEL_START;
-                this.BackPanel();
-            }
-        }
+		public void PopPanel()
+		{
+			var index = _statesStack.Count - 1;
+			if (index >= 0)
+			{
+				var state = _statesStack[index];
+				_statesStack.RemoveAt(index);
+				this.State = state;
+				this.BackPanel();
+			}
+		}
 
-        public int State
-        {
-            get { return (int)this.GetValue("State", (int)-1); }
-            set
-            {
-                if (this.State != value)
-                {
-                    this.LastState = this.State;
-                    this.SetValue("State", value);
-                }
-            }
-        }
+		public void PopToRootPanel()
+		{
+			if (_statesStack.Count > 0)
+			{
+				_statesStack.Clear();
+				this.State = AppConstants.APP_PANEL_START;
+				this.BackPanel();
+			}
+		}
 
-        public int LastState
-        {
-            get { return (int)this.GetValue("LastState", AppConstants.APP_PANEL_START); }
-            set { this.SetValue("LastState", value); }
-        }
+		public int State
+		{
+			get { return (int)this.GetValue("State", (int)-1); }
+			set
+			{
+				if (this.State != value)
+				{
+					this.LastState = this.State;
+					this.SetValue("State", value);
+				}
+			}
+		}
 
-        #region Panels
-        public StartViewModel StartViewModel { get; private set; }
+		public int LastState
+		{
+			get { return (int)this.GetValue("LastState", AppConstants.APP_PANEL_START); }
+			set { this.SetValue("LastState", value); }
+		}
 
-        public LoginViewModel LoginViewModel { get; private set; }
-        #endregion
-    }
-    #endregion
+		#region Panels
+		public StartViewModel StartViewModel { get; private set; }
+		public LoginViewModel LoginViewModel { get; private set; }
+		public HomeViewModel HomeViewModel { get; private set; }
+		public StarredPlacesViewModel StarredPlacesViewModel { get; private set; }
+
+
+
+		#endregion
+
+
+
+
+
+
+		#region Page Background
+
+		public string pageBackground { get; private set; }
+
+
+		#endregion
+
+	}
+	#endregion
 }

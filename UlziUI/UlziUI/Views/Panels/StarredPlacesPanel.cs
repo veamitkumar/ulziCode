@@ -68,20 +68,20 @@ namespace UlziUI.Views.Panels
 			var placesListFontSize = MainPage.PageHeight / 45.561;
 
 
-			var bottomMenuIconHeight = MainPage.PageHeight * 0.13; 
+			var bottomMenuIconHeight = MainPage.PageHeight * 0.13;
 			var bottomMenuIconWidth = MainPage.PageWidth * 0.25;
 			var bottomMenuIconBottomOffset = MainPage.PageHeight / 136.684;
 
-			var bottomMenuImageHeight =MainPage.PageHeight / 22.780;
+			var bottomMenuImageHeight = MainPage.PageHeight / 22.780;
 			var bottomMenuImageWidth = MainPage.PageWidth * 0.10;
 			var bottomMenuImageTopOffset = MainPage.PageHeight * 0.03;
 
-           var bottomMenuContentTopOffset = - MainPage.PageHeight * 0.09;
+			var bottomMenuContentTopOffset = -MainPage.PageHeight * 0.09;
 
-            var bottomMenuBackgroundImageHeight = MainPage.PageHeight * 0.10;
-            var bottomMenuBackgroundImageWidth = MainPage.PageWidth * 0.70;
+			var bottomMenuBackgroundImageHeight = MainPage.PageHeight * 0.10;
+			var bottomMenuBackgroundImageWidth = MainPage.PageWidth * 0.70;
 
-         
+
 
 
 
@@ -93,12 +93,15 @@ namespace UlziUI.Views.Panels
 			#region TopNavigationBar
 
 
-			var arrow = new Image
+			var arrow = new AppImageCommand
 			{
 				WidthRequest = arrowWidth,
 				HeightRequest = arrowHeight,
 				Source = "back"
 			};
+
+			arrow.SetBinding(AppImageCommand.CommandProperty, "BackCommand");
+
 			var arrowContent = new ContentView
 			{
 				HorizontalOptions = LayoutOptions.StartAndExpand,
@@ -129,13 +132,15 @@ namespace UlziUI.Views.Panels
 				Content = navigationLabel
 			};
 
-			var plus = new Image
+			var plus = new AppImageCommand
 			{
 
 				WidthRequest = plusWidth,
 				HeightRequest = plusHeight,
 				Source = "plus_gray"
 			};
+
+			plus.SetBinding(AppImageCommand.CommandProperty, "plusCommand");
 
 			var plusContent = new ContentView
 			{
@@ -310,12 +315,14 @@ namespace UlziUI.Views.Panels
 
 
 
-			var addStarredPlacesImage = new AppImage
+			var addStarredPlacesImage = new AppImageCommand
 			{
 				Source = "plus_gray",
 				HeightRequest = placesListImageHeight,
 				WidthRequest = placesListImageWidth,
 			};
+
+			addStarredPlacesImage.SetBinding(AppImageCommand.CommandProperty, "AddStarredPlacesCommand");
 
 			var addStarredPlacesContent = new StackLayout
 			{
@@ -355,30 +362,32 @@ namespace UlziUI.Views.Panels
 			#region  Bottom menu
 
 
-            var icon = new AppImage
+			var icon = new AppImage
 			{
 				Source = "emergency",
 				HeightRequest = bottomMenuIconHeight,
 				WidthRequest = bottomMenuIconWidth,
-               
+
 			};
 
-            var iconContent = new StackLayout
-            {
-                Padding = new Thickness(0,0,0,bottomMenuIconBottomOffset),
-                HorizontalOptions = LayoutOptions.Start,
+			var iconContent = new StackLayout
+			{
+				Padding = new Thickness(0, 0, 0, bottomMenuIconBottomOffset),
+				HorizontalOptions = LayoutOptions.Start,
 				Orientation = StackOrientation.Horizontal,
 				Children ={
 					icon
 				}
 			};
 
-			var group = new Image
+			var group = new AppImageCommand
 			{
 				Source = "profile_gray",
 				HeightRequest = bottomMenuImageHeight,
 				WidthRequest = bottomMenuImageWidth,
 			};
+
+			group.SetBinding(AppImageCommand.CommandProperty, "profileCommand");
 
 			var groupContent = new StackLayout
 			{
@@ -390,12 +399,14 @@ namespace UlziUI.Views.Panels
 			};
 
 
-			var location = new Image
+			var location = new AppImageCommand
 			{
 				Source = "home",
 				HeightRequest = bottomMenuImageHeight,
 				WidthRequest = bottomMenuImageWidth,
 			};
+
+			location.SetBinding(AppImageCommand.CommandProperty, "locationCommand");
 
 			var locationContent = new StackLayout
 			{
@@ -406,13 +417,15 @@ namespace UlziUI.Views.Panels
 				}
 			};
 
-			var notification = new Image
+			var notification = new AppImageCommand
 			{
-                
+
 				Source = "bell_gray",
 				HeightRequest = bottomMenuImageHeight,
 				WidthRequest = bottomMenuImageWidth,
 			};
+
+			notification.SetBinding(AppImageCommand.CommandProperty, "notificationCommand");
 
 			var notificationContent = new StackLayout
 			{
@@ -423,48 +436,50 @@ namespace UlziUI.Views.Panels
 				}
 			};
 
-			var menuIcon = new Image
+			var menuIcon = new AppImageCommand
 			{
-				
+
 				Source = "account_green",
 				HeightRequest = bottomMenuImageHeight,
 
 				WidthRequest = bottomMenuImageWidth,
 			};
 
-            var menuIconContent = new StackLayout
-            {  
-                VerticalOptions = LayoutOptions.EndAndExpand,
+			menuIcon.SetBinding(AppImageCommand.CommandProperty, "menuCommand");
+
+			var menuIconContent = new StackLayout
+			{
+				VerticalOptions = LayoutOptions.EndAndExpand,
 				Children ={
 					menuIcon
 				}
 			};
 
-            var menuBackground = new Image
-            {
-               Aspect = Aspect.Fill,
-               
-                HeightRequest = bottomMenuBackgroundImageHeight,
-                Source="Menu_Background"
-            };
+			var menuBackground = new Image
+			{
+				Aspect = Aspect.Fill,
 
-            var menuBackgroundContent = new StackLayout
-            {
-				
-                VerticalOptions = LayoutOptions.EndAndExpand,
-                Children ={
-                    menuBackground
-                }
-            };
+				HeightRequest = bottomMenuBackgroundImageHeight,
+				Source = "Menu_Background"
+			};
 
-            var bottomMenuContent = new StackLayout
-            {
-                 
-               
-                Spacing = 40,
-                Padding= new Thickness(0,0,10,10),
-                HorizontalOptions = LayoutOptions.EndAndExpand,
-                VerticalOptions = LayoutOptions.CenterAndExpand,
+			var menuBackgroundContent = new StackLayout
+			{
+
+				VerticalOptions = LayoutOptions.EndAndExpand,
+				Children ={
+					menuBackground
+				}
+			};
+
+			var bottomMenuContent = new StackLayout
+			{
+
+
+				Spacing = 40,
+				Padding = new Thickness(0, 0, 10, 10),
+				HorizontalOptions = LayoutOptions.EndAndExpand,
+				VerticalOptions = LayoutOptions.CenterAndExpand,
 				Orientation = StackOrientation.Horizontal,
 				HeightRequest = bottomMenuHeight,
 				Children ={
@@ -474,30 +489,31 @@ namespace UlziUI.Views.Panels
 
 			var menuContent = new Grid
 			{
-                HeightRequest=50,
-                WidthRequest= 360,
-               
+				HeightRequest = 50,
+				WidthRequest = 360,
+
 				HorizontalOptions = LayoutOptions.Fill,
 				VerticalOptions = LayoutOptions.End,
 				RowSpacing = 0,
 				ColumnSpacing = 0
 			};
-            menuContent.Children.Add(menuBackground);
-            menuContent.Children.Add(bottomMenuContent);
-
-			
+			menuContent.Children.Add(menuBackground);
+			menuContent.Children.Add(bottomMenuContent);
 
 
-            var menuContentFinal = new StackLayout{
-                
-             Spacing = -43,
 
-                VerticalOptions = LayoutOptions.End,
-             Orientation = StackOrientation.Horizontal,
-                Children ={
-                    iconContent,menuContent
-                }
-            };
+
+			var menuContentFinal = new StackLayout
+			{
+
+				Spacing = -43,
+
+				VerticalOptions = LayoutOptions.End,
+				Orientation = StackOrientation.Horizontal,
+				Children ={
+					iconContent,menuContent
+				}
+			};
 
 			#endregion
 
@@ -508,8 +524,8 @@ namespace UlziUI.Views.Panels
 
 			var finalContent = new StackLayout
 			{
-               
-                VerticalOptions = LayoutOptions.End,    
+
+				VerticalOptions = LayoutOptions.End,
 				Spacing = 0,
 				Children ={
 					navigationContent, mainLabelContent,placesContent, menuContentFinal
